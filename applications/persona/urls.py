@@ -42,6 +42,11 @@ urlpatterns = [
         views.SuccessView.as_view(),
         name='success',
     ),
+    path(
+        'update-empleado/<pk>/', 
+        views.EmpleadoUpdateView.as_view(),
+        name='modificar_empleado',
+    ),
 ]
 
 urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

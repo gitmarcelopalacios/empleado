@@ -98,3 +98,6 @@ class EmpleadoCreateView(CreateView):
 class EmpleadoUpdateView(UpdateView):
     model = Empleado
     template_name ="persona/update.html"
+    fields=['first_name','last_name','job','departamento','habilidades']
+    success_url=reverse_lazy('persona_app:success')
+
