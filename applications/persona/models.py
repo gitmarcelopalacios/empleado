@@ -22,6 +22,13 @@ class Empleado(models.Model):
     )
     first_name = models.CharField('Nombres', max_length=60)
     last_name = models.CharField('Apellidos', max_length=60)
+    
+    full_name = models.CharField(
+        'Nombres Completos',
+        max_length=120,
+        blank=True
+    )
+    
     job = models.CharField('Trabajo', max_length=1,choices=JOB_CHOICES)
     departamento=models.ForeignKey(Departamento, on_delete=models.CASCADE)
     avatar=models.ImageField(upload_to='fotos', blank=True, null=True)
@@ -34,6 +41,8 @@ class Empleado(models.Model):
         # verbose_name_plural='Areas de la empresa'
         ordering=['first_name','last_name']
         # unique_together=('name','shor_name')
+        
+
     
     def __str__(self):
         return str(self.id)+'-'+self.first_name+'-'+self.last_name

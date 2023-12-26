@@ -1,9 +1,17 @@
+
 from django.shortcuts import render
+
+from django.urls import reverse_lazy
+
 from django.views.generic import (
-    ListView
+    TemplateView,
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView
 )
 
-# modelos
+# llamo todos los modelo que usare en las vistas
 from .models import Empleado
 
 # listar todos los empleados de la empresa
@@ -11,6 +19,8 @@ from .models import Empleado
 class ListAllEmpleados(ListView):
     model = Empleado
     template_name = "persona/list_all.html"
+    paginate_by=4
+    ordering='first_name'
     context_object_name = 'lista_all_empleados'
 
 # listar todos los empleados de la empresa que pertenecen a un area
@@ -33,14 +43,58 @@ class ListEmpleadoByKword(ListView):
     context_object_name='empleados'
 
     def get_queryset(self):
+        # desde get formulario
         palabra_clave=self.request.GET.get("kword", '')
         lista=Empleado.objects.filter(
              first_name=palabra_clave
         )
         return lista
 
-
-
-
 # listar habilidades de un  empleado
-# listar empleados por trabajo
+
+class ListHabilidadesEmpleado(ListView):
+    template_name = "persona/habilidades.html"
+    context_object_name='habilidades'
+    def get_queryset(self):
+        # selecciono el registro numero 2 de empleado desde tabla
+        empleado=Empleado.objects.get(id=2)
+        return empleado.habilidades.all()
+    
+class EmpleadoDetailView(DetailView):
+    model = Empleado
+    template_name = "persona/detail_empleado.html"
+    def get_context_data(self, **kwargs):
+        context=super(EmpleadoDetailView, self).get_context_data(**kwargs)
+        context['titulo']='Empleado del mes'
+        return context
+    
+
+class SuccessView(TemplateView):
+    template_name = "persona/success.html"
+
+class EmpleadoCreateView(CreateView):
+    model = Empleado
+    template_name = "persona/add.html"
+    fields=['first_name','last_name','job','departamento','habilidades']
+    #fields=('__all__')
+    
+    # con este punto va al mismo documento 
+    #success_url='.'
+    #success_url='/success'
+    success_url=reverse_lazy('persona_app:success')
+
+    def form_valid(self, form):
+
+        # logica de validacion
+        empleado=form.save(commit=False)
+
+        empleado.full_name=empleado.first_name+' '+empleado.last_name
+
+        empleado.save()
+
+        return super(EmpleadoCreateView, self).form_valid(form)
+
+
+class EmpleadoUpdateView(UpdateView):
+    model = Empleado
+    template_name ="persona/update.html"
