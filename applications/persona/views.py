@@ -8,7 +8,8 @@ from django.views.generic import (
     ListView,
     DetailView,
     CreateView,
-    UpdateView
+    UpdateView,
+    DeleteView
 )
 
 # llamo todos los modelo que usare en las vistas
@@ -81,7 +82,7 @@ class EmpleadoCreateView(CreateView):
     # con este punto va al mismo documento 
     #success_url='.'
     #success_url='/success'
-    success_url=reverse_lazy('persona_app:success')
+    success_url=reverse_lazy('persona_app:correcto')
 
     def form_valid(self, form):
 
@@ -96,8 +97,31 @@ class EmpleadoCreateView(CreateView):
 
 
 class EmpleadoUpdateView(UpdateView):
+    
     model = Empleado
+    
     template_name ="persona/update.html"
+    
     fields=['first_name','last_name','job','departamento','habilidades']
-    success_url=reverse_lazy('persona_app:success')
+    
+    success_url=reverse_lazy('persona_app:correcto')
 
+    def post(self, request, *args, **kwargs):
+        
+        self.object = self.get_object()
+        
+        return super().post(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+
+        return super(EmpleadoUpdateView, self).form_valid(form)
+
+class EmpleadoDeleteView(DeleteView):
+    
+    model = Empleado
+    
+    template_name ="persona/delete.html"
+    
+    success_url=reverse_lazy('persona_app:correcto')
+
+ 

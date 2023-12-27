@@ -22,5 +22,6 @@ urlpatterns = [
     path('home/', views.IndexView.as_view(), name='home'),
     path('lista/', views.PruebaListView.as_view(), name='lista'),
     path('lista-prueba/', views.ModeloPruebaListView.as_view(), name='lista_prueba'),
+    path('add/', views.PruebaCreateView.as_view(), name='prueba_add'),
     
 ]
