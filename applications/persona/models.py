@@ -39,7 +39,7 @@ class Empleado(models.Model):
     class Meta:
         # verbose_name='Mi departamento'
         # verbose_name_plural='Areas de la empresa'
-        ordering=['first_name','last_name']
+        ordering=['-id','first_name','last_name']
         # unique_together=('name','shor_name')
         
 
