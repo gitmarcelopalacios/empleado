@@ -15,6 +15,9 @@ from django.views.generic import (
 # llamo todos los modelo que usare en las vistas
 from .models import Empleado
 
+class InicioView(TemplateView):
+    template_name="inicio.html"
+
 # listar todos los empleados de la empresa
 
 class ListAllEmpleados(ListView):
