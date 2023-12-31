@@ -10,6 +10,18 @@ from .forms import PruebaForm
 class IndexView(TemplateView):
     template_name='home/home.html'
 
+class HomeTemplate1View(TemplateView):
+    template_name='home/home1.html'
+
+class HomeTemplate2View(TemplateView):
+    template_name='home/home2.html'
+
+class HomeTemplate3View(TemplateView):
+    template_name='home/home3.html'
+
+class ResumeFoundationView(TemplateView):
+    template_name='home/resume_foundation.html'
+
 class PruebaListView(ListView):
     template_name='home/lista.html'
     queryset = ['A','B','C']
@@ -29,7 +41,8 @@ class PruebaCreateView(CreateView):
     success_url='/'
 
     
-    
+
+       
     
     
     

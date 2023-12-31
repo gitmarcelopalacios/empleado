@@ -1,0 +1,17 @@
+{% extends 'home/common/base_home.html' %}
+{% load static %}
+
+{% block titulo %}
+    Pantalla 1
+{% endblock titulo %}
+
+{% block cuerpo %}
+<h1>Aqui va el contenido 1</h1>
+<div class="grid-x">
+    <div class="cell callout success">
+        <h5>Este es un callout</h5>
+        <p>Este es el parrafo que lo acompaña apropiadamente y puede ser de largo variable</p>
+        <a href="#">Este es un enlace peligroso</a>
+    </div>
+</div>    
+{% endblock cuerpo %}
