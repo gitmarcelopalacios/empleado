@@ -21,11 +21,18 @@ class InicioView(TemplateView):
 # listar todos los empleados de la empresa
 
 class ListAllEmpleados(ListView):
-    model = Empleado
+    #model = Empleado
     template_name = "persona/list_all.html"
     paginate_by=4
     ordering='first_name'
     context_object_name = 'lista_all_empleados'
+
+    def get_queryset(self):
+        palabra_clave = self.request.GET.get("kword",'')
+        lista = Empleado.objects.filter(
+            first_name__icontains=palabra_clave
+            )
+        return lista 
 
 # listar todos los empleados de la empresa que pertenecen a un area
 

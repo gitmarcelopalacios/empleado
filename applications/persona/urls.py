@@ -15,7 +15,7 @@ urlpatterns = [
     path(
         'listar-todo-empleados/', 
         views.ListAllEmpleados.as_view(),
-        name='listar_todo_empleado'
+        name='empleados_all'
     ),
     path(
         'lista-by-area/<shorname>/', 
@@ -35,7 +35,7 @@ urlpatterns = [
     path(
         'ver-empleado/<pk>/', 
         views.EmpleadoDetailView.as_view(),
-        name='empleado_detail_view'
+        name='empleado_detail'
     ),
     path(
         'add-empleado/', 
