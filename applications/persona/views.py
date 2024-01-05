@@ -25,7 +25,7 @@ class ListAllEmpleados(ListView):
     template_name = "persona/list_all.html"
     paginate_by=4
     ordering='first_name'
-    context_object_name = 'lista_all_empleados'
+    context_object_name = 'empleados'
 
     def get_queryset(self):
         palabra_clave = self.request.GET.get("kword",'')
@@ -38,7 +38,7 @@ class ListAllEmpleados(ListView):
 
 class ListByAreaEmpleado(ListView):
     template_name = "persona/list_by_area.html"
-    context_object_name='lista'
+    context_object_name='empleados'
 
     def get_queryset(self):
         area=self.kwargs['shorname']

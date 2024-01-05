@@ -1,9 +1,20 @@
-<h1>Lista de empleados por departamento otro</h1>
+{% extends "base.html" %}
+{% load static %}
 
 
+{% block title %}
+    Lista de empleados por departamento
+{% endblock title %}
+    
+    
+{% block content %}
+    <h1>Lista de empleados por departamento</h1>
+    <ul>
+        {% for e in empleados %}
+            <li>{{e}}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
+    
 
-<ul>
-    {% for e in lista %}
-        <li>{{e}}</li>
-    {% endfor %}
-</ul>
+

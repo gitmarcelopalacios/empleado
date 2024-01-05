@@ -35,7 +35,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      {% for e in lista_all_empleados %}
+                      {% for e in empleados %}
                         <tr>
                             <td><p style="text-align: right;">{{e.id}}</p></td>
                             <td><p>{{e.first_name}}</p></td>
@@ -49,7 +49,45 @@
                       {% endfor %}
                      </tbody>
                 </table>    
-           </div>
+            </div>
+
+            <!-- paginacion -->
+
+            <div class="cell">
+                
+                {% if is_paginated %}
+
+                    <nav aria-label="Pagination">
+                        <ul class="pagination">
+                            
+                            {% if page_obj.has_previous  %}
+                                <li class="pagination-previous"><a href="?page={{page_obj.previous_page_number}}">Anterior</a></li>
+                            {% endif %}
+                            
+                            
+                            {% for pagina in paginator.page_range %}
+
+
+                                    {% if pagina == page_obj.number  %} 
+                                        <li class="current"><a href="?page={{pagina}}" aria-label="Page 2">{{pagina}}</a></li>
+                                    {% else %}
+                                        <li class=""><a href="?page={{pagina}}" aria-label="Page 2">{{pagina}}</a></li>
+                                    {% endif %}
+                                     
+
+                                
+                            {% endfor %}
+                            
+                            {% if page_obj.has_next  %}
+                                <li class="pagination-next"><a href="?page={{page_obj.next_page_number}}">Próxima</a></li>
+                            {% endif %}
+                            
+                       </ul>
+                    </nav>
+                
+                {% endif %}
+
+            </div>
         </div>
 
     </div>
