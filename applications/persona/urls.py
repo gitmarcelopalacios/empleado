@@ -23,6 +23,11 @@ urlpatterns = [
         name='empleados_area'
     ),
     path(
+        'lista-empleados-admin/', 
+        views.ListEmpleadosAdmin.as_view(),
+        name='empleados_admin'
+    ),
+    path(
         'buscar-empleado/', 
         views.ListEmpleadoByKword.as_view(),
         name='lista_by_area'

@@ -34,6 +34,18 @@ class ListAllEmpleados(ListView):
             )
         return lista 
 
+
+# administrar crud
+
+class ListEmpleadosAdmin(ListView):
+    #model = Empleado
+    template_name = "persona/lista_empleados.html"
+    paginate_by=6
+    ordering='first_name'
+    context_object_name = 'empleados'
+    model = Empleado
+
+
 # listar todos los empleados de la empresa que pertenecen a un area
 
 class ListByAreaEmpleado(ListView):
@@ -114,7 +126,7 @@ class EmpleadoUpdateView(UpdateView):
     
     fields=['first_name','last_name','job','departamento','habilidades']
     
-    success_url=reverse_lazy('persona_app:correcto')
+    success_url=reverse_lazy('persona_app:empleados_admin')
 
     def post(self, request, *args, **kwargs):
         
@@ -132,6 +144,6 @@ class EmpleadoDeleteView(DeleteView):
     
     template_name ="persona/delete.html"
     
-    success_url=reverse_lazy('persona_app:correcto')
+    success_url=reverse_lazy('persona_app:empleados_admin')
 
  
