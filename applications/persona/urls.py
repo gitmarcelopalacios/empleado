@@ -45,7 +45,7 @@ urlpatterns = [
     path(
         'add-empleado/', 
         views.EmpleadoCreateView.as_view(),
-        name='add_empleado'
+        name='empleado_add'
     ),
     path(
         'success/', 

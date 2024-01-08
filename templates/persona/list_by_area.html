@@ -3,17 +3,46 @@
 
 
 {% block title %}
-    Lista de empleados por departamento
+Lista de empleados por departamento
 {% endblock title %}
-    
-    
+
+
 {% block content %}
-    <h1>Lista de empleados por departamento</h1>
-    <ul>
-        {% for e in empleados %}
-            <li>{{e}}</li>
-        {% endfor %}
-    </ul>
+
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+    
+    <div class="grid-x">
+        <h1 class="cell">Empleados del Departamento Empleados</h1>
+
+        <div class="cell">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE(S)</th>
+                        <th>APELLIDO(S)</th>
+                        <th>ÁREA</th>
+                        <th>DEPARTAMENTO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in empleados %}
+                    <tr>
+                        <td><p style="text-align: right;">{{e.id}}</p></td>
+                        <td><p>{{e.first_name}}</p></td>
+                        <td><p>{{e.last_name}}</p></td>
+                        <td><p>{{e.departamento.name}}</p></td>
+                        <td><p>{{e.departamento.shor_name}}</p></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table>    
+            </div>
+        </div>
+    </div>
 {% endblock content %}
     
 

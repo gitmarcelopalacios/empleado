@@ -14,6 +14,8 @@ from django.views.generic import (
 
 # llamo todos los modelo que usare en las vistas
 from .models import Empleado
+# llamo los forms
+from .forms import EmpleadoForm
 
 class InicioView(TemplateView):
     template_name="inicio.html"
@@ -98,13 +100,9 @@ class SuccessView(TemplateView):
 class EmpleadoCreateView(CreateView):
     model = Empleado
     template_name = "persona/add.html"
-    fields=['first_name','last_name','job','departamento','habilidades']
-    #fields=('__all__')
-    
-    # con este punto va al mismo documento 
-    #success_url='.'
-    #success_url='/success'
-    success_url=reverse_lazy('persona_app:correcto')
+    form_class = EmpleadoForm
+    success_url=reverse_lazy('persona_app:empleados_admin')
+    #success_url=reverse_lazy('persona_app:correcto')
 
     def form_valid(self, form):
 
